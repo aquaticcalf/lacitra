@@ -1,5 +1,0 @@
-- [ ] user and authentication
-- [ ] minio integration
-- [ ] video compression
-- [ ] config
-- [ ] cli

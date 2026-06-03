@@ -1,0 +1,11 @@
+.{
+    .name = .lacitra,
+    .version = "0.0.0",
+    .fingerprint = 0xfe2a1a32fe77c901,
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "app",
+        "core",
+    },
+}
