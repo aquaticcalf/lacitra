@@ -15,6 +15,11 @@ pub fn build(b: *std.Build) void {
         .openssl = false,
     }).module("zap");
 
+    const z3_mod = b.dependency("z3", .{
+        .target = target,
+        .optimize = optimize,
+    }).module("s3");
+
     const core = b.addModule("core", .{
         .root_source_file = b.path("core/core.zig"),
         .target = target,
@@ -33,6 +38,12 @@ pub fn build(b: *std.Build) void {
     cli.addImport("zli", zli_mod);
     cli.addImport("core", core);
     cli.addImport("server", server);
+
+    const s3 = b.addModule("s3", .{
+    	.root_source_file = b.path("s3/index.zig"),
+     	.target = target,
+    });
+    s3.addImport("z3", z3_mod);
 
     const exe = b.addExecutable(.{
         .name = "lacitra",

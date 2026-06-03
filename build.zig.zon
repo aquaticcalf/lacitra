@@ -10,6 +10,10 @@
             .url = "https://github.com/xcaeser/zli/archive/v5.0.0.tar.gz",
             .hash = "zli-5.0.0-LeUjptjnAAB7S5QkDi3-4NsGAiA9Zg1P24aQ6rx30Pwk",
         },
+        .z3 = .{
+            .url = "git+https://codeberg.org/fellowtraveler/z3.git#6170f82ac8dbc377167adc818b2ec45b0cd30b9c",
+            .hash = "z3-0.4.0-N25-cCCMAQAJwdfivwRrCFccaGnnVPk7TnWKn4S7U-5a",
+        },
     },
     .fingerprint = 0xfe2a1a32fe77c901,
     .paths = .{
@@ -17,6 +21,7 @@
         "build.zig.zon",
         "app",
         "core",
+        "s3",
         "server",
     },
 }
