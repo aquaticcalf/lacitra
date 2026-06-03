@@ -21,7 +21,7 @@ pub fn build(b: *std.Build) void {
     }).module("s3");
 
     const core = b.addModule("core", .{
-        .root_source_file = b.path("core/core.zig"),
+        .root_source_file = b.path("core/index.zig"),
         .target = target,
     });
 
