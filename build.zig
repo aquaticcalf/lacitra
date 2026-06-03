@@ -66,6 +66,14 @@ pub fn build(b: *std.Build) void {
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
 
-    const run_step = b.step("run", "Run the app");
+    const run_step = b.step("run", "run the lacitra cli");
     run_step.dependOn(&run_cmd.step);
+
+    const start_s3_cmd = b.addSystemCommand(&.{ "podman", "compose", "up", "-d" });
+    const start_s3_step = b.step("startS3", "start minio via podman compose");
+    start_s3_step.dependOn(&start_s3_cmd.step);
+
+    const stop_s3_cmd = b.addSystemCommand(&.{ "podman", "compose", "down" });
+    const stop_s3_step = b.step("stopS3", "stop minio via podman compose");
+    stop_s3_step.dependOn(&stop_s3_cmd.step);
 }
