@@ -51,8 +51,8 @@ pub fn build(b: *std.Build) void {
     cli.addImport("server", server);
 
     const s3 = b.addModule("s3", .{
-    	.root_source_file = b.path("s3/index.zig"),
-     	.target = target,
+        .root_source_file = b.path("s3/index.zig"),
+        .target = target,
     });
     s3.addImport("z3", z3_mod);
 
