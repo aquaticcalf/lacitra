@@ -1,11 +1,22 @@
 .{
     .name = .lacitra,
     .version = "0.0.0",
+    .dependencies = .{
+        .zap = .{
+            .url = "git+https://github.com/zigzap/zap#f6099ecec496c7ec623c5913baa5b6b5da2e883d",
+            .hash = "zap-0.10.6-GoeB8y-IJAD3m9zkAkeTQalzU1NuvO072u8hA78Irdp8",
+        },
+        .zli = .{
+            .url = "https://github.com/xcaeser/zli/archive/v5.0.0.tar.gz",
+            .hash = "zli-5.0.0-LeUjptjnAAB7S5QkDi3-4NsGAiA9Zg1P24aQ6rx30Pwk",
+        },
+    },
     .fingerprint = 0xfe2a1a32fe77c901,
     .paths = .{
         "build.zig",
         "build.zig.zon",
         "app",
         "core",
+        "server",
     },
 }
