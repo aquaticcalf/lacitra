@@ -45,6 +45,18 @@ pub fn build(b: *std.Build) void {
     });
     s3.addImport("z3", z3_mod);
 
+    const sqlite_mod = b.dependency("sqlite", .{
+        .target = target,
+        .optimize = optimize,
+    }).module("sqlite");
+
+    const db = b.addModule("db", .{
+        .root_source_file = b.path("db/index.zig"),
+        .target = target,
+        .link_libc = true,
+    });
+    db.addImport("sqlite", sqlite_mod);
+
     const exe = b.addExecutable(.{
         .name = "lacitra",
         .root_module = b.createModule(.{

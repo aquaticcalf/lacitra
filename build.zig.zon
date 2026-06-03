@@ -14,6 +14,10 @@
             .url = "git+https://codeberg.org/fellowtraveler/z3.git#6170f82ac8dbc377167adc818b2ec45b0cd30b9c",
             .hash = "z3-0.4.0-N25-cCCMAQAJwdfivwRrCFccaGnnVPk7TnWKn4S7U-5a",
         },
+        .sqlite = .{
+            .url = "git+https://github.com/vrischmann/zig-sqlite#7fd71e242b71ae8cb84f01d14f068f773f620207",
+            .hash = "sqlite-3.48.0-F2R_a8KPDgC9FKAvA3_lf1enn92aBWSbm5TV_W9J8bXx",
+        },
     },
     .fingerprint = 0xfe2a1a32fe77c901,
     .paths = .{
@@ -21,6 +25,7 @@
         "build.zig.zon",
         "app",
         "core",
+        "db",
         "s3",
         "server",
     },
