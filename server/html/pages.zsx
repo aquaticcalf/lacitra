@@ -1,0 +1,36 @@
+const zsx = @import("zsx");
+
+pub templ Layout(title: []const u8) {
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>{title} - lacitra</title>
+        </head>
+        <body>
+            <header>
+                <h1>lacitra</h1>
+                <nav>
+                    <a href="/">JSON</a>
+                    <a href="/html/">HTML</a>
+                </nav>
+            </header>
+            <main>
+                @children
+            </main>
+        </body>
+    </html>
+}
+
+pub templ Home() {
+    @Layout("Home") {
+        <h2>Welcome to lacitra</h2>
+        <p>This page is rendered with zsx templates.</p>
+        <ul>
+            <li>Zero runtime overhead</li>
+            <li>Fully type-checked by the Zig compiler</li>
+            <li>HTML escaping built-in</li>
+        </ul>
+    }
+}

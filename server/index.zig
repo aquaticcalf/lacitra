@@ -3,12 +3,18 @@ const zap = @import("zap");
 
 const index = @import("routes/index.zig");
 const not_found = @import("routes/404.zig");
+const html_route = @import("routes/html.zig");
 
 fn onRequest(r: zap.Request) !void {
     const path = r.path orelse return;
 
     if (std.mem.eql(u8, path, "/")) {
         try index.handle(r);
+        return;
+    }
+
+    if (std.mem.eql(u8, path, "/html/")) {
+        try html_route.handle(r);
         return;
     }
 
