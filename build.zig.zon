@@ -18,6 +18,9 @@
             .url = "git+https://github.com/vrischmann/zig-sqlite#7fd71e242b71ae8cb84f01d14f068f773f620207",
             .hash = "sqlite-3.48.0-F2R_a8KPDgC9FKAvA3_lf1enn92aBWSbm5TV_W9J8bXx",
         },
+        .zsx = .{
+            .path = "zsx",
+        },
     },
     .fingerprint = 0xfe2a1a32fe77c901,
     .paths = .{
@@ -28,5 +31,6 @@
         "db",
         "s3",
         "server",
+        "zsx",
     },
 }

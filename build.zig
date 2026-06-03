@@ -1,8 +1,18 @@
 const std = @import("std");
+const zsx_pkg = @import("zsx");
 
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+
+    const zsx_dep = b.dependency("zsx", .{
+        .target = target,
+        .optimize = optimize,
+    });
+
+    const templates = zsx_pkg.addTemplates(b, zsx_dep, &.{
+        b.path("server/html/pages.zsx"),
+    });
 
     const zli_mod = b.dependency("zli", .{
         .target = target,
@@ -30,6 +40,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
     });
     server.addImport("zap", zap_mod);
+    server.addImport("zsx", zsx_dep.module("zsx"));
 
     const cli = b.addModule("cli", .{
         .root_source_file = b.path("app/cli/index.zig"),
@@ -72,6 +83,7 @@ pub fn build(b: *std.Build) void {
         }),
     });
     exe.root_module.addImport("zap", zap_mod);
+    exe.step.dependOn(templates);
 
     b.installArtifact(exe);
 
