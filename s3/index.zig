@@ -1,10 +1,14 @@
-const std = @import("std");
-const S3Client = @import("z3").S3Client;
+pub const types = @import("types.zig");
+pub const connection = @import("connection.zig");
+pub const upload = @import("upload.zig");
 
-pub fn initS3Connection(allocator: std.mem.Allocator, config: S3Client.Config) !S3Client {
-    return try S3Client.init(allocator, config, .{});
-}
+pub const Client = types.Client;
+pub const Buckets = types.Buckets;
+pub const ObjectKeys = types.ObjectKeys;
+pub const UploadResult = types.UploadResult;
 
-pub fn deinitS3Connection(client: *S3Client) void {
-    client.deinit();
-}
+pub const init_s3_connection = connection.init_s3_connection;
+pub const deinit_s3_connection = connection.deinit_s3_connection;
+pub const ensure_buckets = upload.ensure_buckets;
+pub const upload_raw_video = upload.upload_raw_video;
+pub const upload_rendition_directory = upload.upload_rendition_directory;

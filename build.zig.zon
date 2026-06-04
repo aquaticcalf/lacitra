@@ -2,6 +2,10 @@
     .name = .lacitra,
     .version = "0.0.0",
     .dependencies = .{
+        .sqlite = .{
+            .url = "git+https://github.com/aquaticcalf/sqlite",
+            .hash = "sqlite-0.0.0-Pl8z0X6kAADvhUEoa1WNWJzrLjug_0ZaEtDRbwPtBm_r",
+        },
         .zap = .{
             .url = "git+https://github.com/zigzap/zap#f6099ecec496c7ec623c5913baa5b6b5da2e883d",
             .hash = "zap-0.10.6-GoeB8y-IJAD3m9zkAkeTQalzU1NuvO072u8hA78Irdp8",
@@ -13,10 +17,6 @@
         .z3 = .{
             .url = "git+https://codeberg.org/fellowtraveler/z3.git#6170f82ac8dbc377167adc818b2ec45b0cd30b9c",
             .hash = "z3-0.4.0-N25-cCCMAQAJwdfivwRrCFccaGnnVPk7TnWKn4S7U-5a",
-        },
-        .sqlite = .{
-            .url = "git+https://github.com/vrischmann/zig-sqlite#7fd71e242b71ae8cb84f01d14f068f773f620207",
-            .hash = "sqlite-3.48.0-F2R_a8KPDgC9FKAvA3_lf1enn92aBWSbm5TV_W9J8bXx",
         },
         .zsx = .{
             .url = "git+https://github.com/aquaticcalf/zsx#0a50e1a30ee2ff531fa94b29618bff049cf580d7",
@@ -30,6 +30,7 @@
         "app",
         "core",
         "db",
+        "video",
         "s3",
         "server",
     },

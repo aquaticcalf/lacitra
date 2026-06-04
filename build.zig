@@ -30,6 +30,11 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     }).module("s3");
 
+    const sqlite_mod = b.dependency("sqlite", .{
+        .target = target,
+        .optimize = optimize,
+    }).module("sqlite");
+
     const core = b.addModule("core", .{
         .root_source_file = b.path("core/index.zig"),
         .target = target,
@@ -56,17 +61,20 @@ pub fn build(b: *std.Build) void {
     });
     s3.addImport("z3", z3_mod);
 
-    const sqlite_mod = b.dependency("sqlite", .{
+    const video = b.addModule("video", .{
+        .root_source_file = b.path("video/index.zig"),
         .target = target,
-        .optimize = optimize,
-    }).module("sqlite");
+    });
 
     const db = b.addModule("db", .{
         .root_source_file = b.path("db/index.zig"),
         .target = target,
-        .link_libc = true,
     });
     db.addImport("sqlite", sqlite_mod);
+    core.addImport("db", db);
+    core.addImport("s3", s3);
+    core.addImport("video", video);
+    core.addImport("sqlite", sqlite_mod);
 
     const exe = b.addExecutable(.{
         .name = "lacitra",
@@ -92,6 +100,28 @@ pub fn build(b: *std.Build) void {
 
     const run_step = b.step("run", "run the lacitra cli");
     run_step.dependOn(&run_cmd.step);
+
+    const db_tests = b.addTest(.{
+        .root_module = db,
+    });
+
+    const core_tests = b.addTest(.{
+        .root_module = core,
+    });
+
+    const s3_tests = b.addTest(.{
+        .root_module = s3,
+    });
+
+    const video_tests = b.addTest(.{
+        .root_module = video,
+    });
+
+    const test_step = b.step("test", "run unit tests");
+    test_step.dependOn(&b.addRunArtifact(db_tests).step);
+    test_step.dependOn(&b.addRunArtifact(core_tests).step);
+    test_step.dependOn(&b.addRunArtifact(s3_tests).step);
+    test_step.dependOn(&b.addRunArtifact(video_tests).step);
 
     const start_s3_cmd = b.addSystemCommand(&.{ "podman", "compose", "up", "-d" });
     const start_s3_step = b.step("startS3", "start minio via podman compose");

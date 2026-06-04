@@ -8,7 +8,7 @@ pub fn build(init_options: zli.InitOptions) !*zli.Command {
     const root = try zli.Command.init(init_options, .{
         .name = "lacitra",
         .description = "lacitra cli",
-    }, showHelp);
+    }, show_help);
 
     try root.addCommands(&.{
         try server_cmd.register(init_options),
@@ -18,6 +18,6 @@ pub fn build(init_options: zli.InitOptions) !*zli.Command {
     return root;
 }
 
-fn showHelp(ctx: zli.CommandContext) !void {
+fn show_help(ctx: zli.CommandContext) !void {
     try ctx.command.printHelp();
 }

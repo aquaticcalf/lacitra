@@ -1,12 +1,14 @@
 const std = @import("std");
+const assert = std.debug.assert;
 const zap = @import("zap");
 
 const index = @import("routes/index.zig");
 const not_found = @import("routes/404.zig");
 const html_route = @import("routes/html.zig");
 
-fn onRequest(r: zap.Request) !void {
+fn on_request(r: zap.Request) !void {
     const path = r.path orelse return;
+    assert(path.len > 0);
 
     if (std.mem.eql(u8, path, "/")) {
         try index.handle(r);
@@ -24,7 +26,7 @@ fn onRequest(r: zap.Request) !void {
 pub fn start() !void {
     var listener = zap.HttpListener.init(.{
         .port = 8000,
-        .on_request = onRequest,
+        .on_request = on_request,
         .log = true,
     });
 
