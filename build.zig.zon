@@ -19,7 +19,8 @@
             .hash = "sqlite-3.48.0-F2R_a8KPDgC9FKAvA3_lf1enn92aBWSbm5TV_W9J8bXx",
         },
         .zsx = .{
-            .path = "zsx",
+            .url = "git+https://github.com/aquaticcalf/zsx#0a50e1a30ee2ff531fa94b29618bff049cf580d7",
+            .hash = "zsx-0.0.0-TtHnoyfUAADfFiV1STj-2o74bRy49og8p48WxZoHtgBU",
         },
     },
     .fingerprint = 0xfe2a1a32fe77c901,
@@ -31,6 +32,5 @@
         "db",
         "s3",
         "server",
-        "zsx",
     },
 }
